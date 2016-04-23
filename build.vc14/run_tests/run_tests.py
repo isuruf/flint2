@@ -66,12 +66,18 @@ for ef in exe:
     print(fd, ': ERROR (', str, ')')
     run_fail += 1
     continue
-  output = prc.communicate()[0]
-  if prc.returncode:
-    print(fd, 'ERROR {}'.format(prc.returncode), end=' ')
+  try:
+    output = prc.communicate(timeout=300)[0]
+    if prc.returncode:
+      print(fd, 'ERROR {}'.format(prc.returncode), end=' ')
+      run_fail += 1
+    else:
+      run_ok += 1
+  except subprocess.TimeoutExpired:
+    prc.kill()
     run_fail += 1
-  else:
-    run_ok += 1
+    output = None
+    print(fd + '... TIMEOUT')
   if output:
     op = output.decode().replace('\n', '')
     if 'PASS' in op:

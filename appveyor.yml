@@ -21,11 +21,18 @@ cache:
 - C:\projects\pthreads -> .build_dependencies.cmd
 - C:\projects\flint2\mpir-2.7.0 -> .build_dependencies
 - C:\projects\flint2\mpfr-3.1.4 -> .build_dependencies
- 
-build_script:
+
+install:
   - if [%COMPILER%]==[MSVC15] if not exist C:\projects\mpir .build_dependencies.cmd
   - if [%COMPILER%]==[MSVC15] if [%PLATFORM%]==[x64] set PATH=C:\Python35-x64;%PATH%
   - if [%COMPILER%]==[MSVC15] if [%PLATFORM%]==[Win32] set PATH=C:\Python35;%PATH%
 
+build_script:
   - if [%COMPILER%]==[MinGW-w64] C:\msys64\usr\bin\sh.exe --login /c/projects/flint2/.appveyor_msys_build.sh
-  - if [%COMPILER%]==[MSVC15] call .appveyor_msvc_build.cmd
+  - if [%COMPILER%]==[MSVC15] .appveyor_msvc_build.cmd
+
+test_script:
+  # Remove non-terminating t-lambertw test
+  - if [%COMPILER%]==[MSVC15] del build.vc14\tests\double_extras\%PLATFORM%\Release\t-lambertw.exe
+  - if [%COMPILER%]==[MSVC15] for /r "." %%a in (*.exe) do %%~fa
+

@@ -7,7 +7,5 @@ copy lib_flint\%PLATFORM%\Release\lib_flint.lib ..\lib\%PLATFORM%\Release\lib_fl
 
 cd build_tests
 python %cd%\build_tests.py --interfaces-tests False --platform %PLATFORM%
-
-cd ..\run_tests
-python %cd%\run_tests.py 0
 cd ..\..
+
