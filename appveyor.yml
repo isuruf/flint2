@@ -34,5 +34,5 @@ build_script:
 test_script:
   # Remove non-terminating t-lambertw test
   - if [%COMPILER%]==[MSVC15] del build.vc14\tests\double_extras\%PLATFORM%\Release\t-lambertw.exe
-  - if [%COMPILER%]==[MSVC15] for /r "." %%a in (*.exe) do %%~fa
   - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+  - if [%COMPILER%]==[MSVC15] for /r "." %%a in (*.exe) do %%~fa
