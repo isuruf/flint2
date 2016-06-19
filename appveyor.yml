@@ -16,14 +16,14 @@ environment:
       ABI: 64
 
 cache:
-- C:\projects\mpir -> .build_dependencies.cmd
-- C:\projects\mpfr -> .build_dependencies.cmd
-- C:\projects\pthreads -> .build_dependencies.cmd
+- C:\projects\mpir -> .build_dependencies.bat
+- C:\projects\mpfr -> .build_dependencies.bat
+- C:\projects\pthreads -> .build_dependencies.bat
  
 build_script:
-  - if [%COMPILER%]==[MSVC15] if not exist C:\projects\mpir .build_dependencies.cmd
+  - if [%COMPILER%]==[MSVC15] if not exist C:\projects\mpir call .build_dependencies.bat
   - if [%COMPILER%]==[MSVC15] if [%PLATFORM%]==[x64] set PATH=C:\Python35-x64;%PATH%
   - if [%COMPILER%]==[MSVC15] if [%PLATFORM%]==[Win32] set PATH=C:\Python35;%PATH%
 
   - if [%COMPILER%]==[MinGW-w64] C:\msys64\usr\bin\sh.exe --login /c/projects/flint2/.appveyor_msys_build.sh
-  - if [%COMPILER%]==[MSVC15] call .appveyor_msvc_build.cmd
+  - if [%COMPILER%]==[MSVC15] call .appveyor_msvc_build.bat
