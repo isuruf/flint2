@@ -9,6 +9,8 @@ os:
   - osx
   - linux
 
+osx_image: xcode8
+
 compiler:
   - gcc
   - clang
