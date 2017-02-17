@@ -15,9 +15,9 @@ absolute_path(){
 mkdir deps
 deps_dir=`pwd`/deps
 
-wget http://mpir.org/mpir-2.7.0.tar.bz2
-tar -xf mpir-2.7.0.tar.bz2
-cd mpir-2.7.0
+wget http://mpir.org/mpir-2.7.2.tar.bz2
+tar -xf mpir-2.7.2.tar.bz2
+cd mpir-2.7.2
 ./configure ABI=$ABI --enable-gmpcompat --prefix=$deps_dir
 make -j4
 make install
