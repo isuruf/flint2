@@ -19,7 +19,7 @@ wget http://mpir.org/mpir-2.7.0.tar.bz2
 tar -xf mpir-2.7.0.tar.bz2
 cd mpir-2.7.0
 ./configure ABI=$ABI --enable-gmpcompat --prefix=$deps_dir
-make -j4 > /dev/null 2>&1
+make -j4
 make install
 cd ..
 
@@ -27,7 +27,7 @@ wget http://www.mpfr.org/mpfr-current/mpfr-3.1.5.tar.bz2
 tar -xf mpfr-3.1.5.tar.bz2
 cd mpfr-3.1.5
 ./configure ABI=$ABI  --prefix=$deps_dir --with-gmp=$deps_dir
-make -j4 > /dev/null 2>&1
+make -j4
 make install
 cd ..
 
