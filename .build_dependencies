@@ -12,7 +12,8 @@ absolute_path(){
    echo $retval
 }
 
-deps_dir=$(absolute_path "../deps")
+mkdir deps
+deps_dir=`pwd`/deps
 
 wget http://mpir.org/mpir-2.7.0.tar.bz2
 tar -xf mpir-2.7.0.tar.bz2
