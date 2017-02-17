@@ -16,11 +16,16 @@ compiler:
   - clang
 
 script:
+  - deps_dir=`pwd`/deps
+  - export LDFLAGS="-Wl,-r,$deps_dir"
   # On OSX, gcc is a wrapper around clang, so use gcc from homebrew
   - if [[ "${TRAVIS_OS_NAME}" == "osx" ]] && [[ "${CC}" == "gcc" ]]; then
        brew install gcc48;
        export CC=gcc-4.8;
        export CXX=g++-4.8;
     fi
-  - ./.build_dependencies && ./configure --with-mpir=mpir-2.7.0 --with-mpfr=mpfr-3.1.5 && make -j4 && make -j4 check
+  - ./.build_dependencies
+  - ./configure --with-mpir=$deps_dir --with-mpfr=$deps_dir
+  - make -j4
+  - make -j4 check
 
