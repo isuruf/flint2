@@ -4,16 +4,16 @@ build:
   
 environment:
   matrix:
-    - BUILD_TYPE: Release
-      COMPILER: MSVC15
-      PLATFORM: x64
     - COMPILER: MinGW-w64
       ABI: 32
     - BUILD_TYPE: Release
       COMPILER: MSVC15
-      PLATFORM: Win32
+      PLATFORM: x64
     - COMPILER: MinGW-w64
       ABI: 64
+    - BUILD_TYPE: Release
+      COMPILER: MSVC15
+      PLATFORM: Win32
 
 cache:
 - C:\projects\mpir -> .build_dependencies.cmd
