@@ -17,7 +17,7 @@ compiler:
 
 script:
   - deps_dir=`pwd`/deps
-  - export LDFLAGS="-Wl,-r,$deps_dir"
+  - export LDFLAGS="-Wl,-rpath,$deps_dir"
   # On OSX, gcc is a wrapper around clang, so use gcc from homebrew
   - if [[ "${TRAVIS_OS_NAME}" == "osx" ]] && [[ "${CC}" == "gcc" ]]; then
        brew install gcc48;
