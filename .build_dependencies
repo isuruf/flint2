@@ -12,6 +12,7 @@ absolute_path(){
    echo $retval
 }
 
+export PATH=/c/msys64/mingw$ABI/bin::$PATH
 wget http://mpir.org/mpir-3.0.0.tar.bz2
 tar -xf mpir-3.0.0.tar.bz2
 cd mpir-3.0.0
