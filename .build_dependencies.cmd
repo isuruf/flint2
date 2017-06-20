@@ -2,9 +2,9 @@ echo int flint_test_multiplier(){return 1;} > test_helpers.c
 
 cd ..
 
-curl -fsS -o mpir.zip http://mpir.org/mpir-2.7.2.zip
+curl -fsS -o mpir.zip http://mpir.org/mpir-3.0.0.zip
 7z x mpir.zip > NUL
-rename mpir-2.7.2 mpir
+rename mpir-3.0.0 mpir
 cd mpir\build.vc14
 msbuild.exe lib_mpir_gc/lib_mpir_gc.vcxproj /p:Configuration=Release /p:Platform=%PLATFORM% /p:PlatformToolset=v140 /verbosity:minimal
 cd ..\..
