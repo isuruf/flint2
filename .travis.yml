@@ -16,5 +16,5 @@ compiler:
   - clang
 
 script:
-  - ./.build_dependencies && ./configure --with-mpir=mpir-2.7.0 --with-mpfr=mpfr-3.1.5 && make -j4 && make -j4 check
+  - ./.build_dependencies && ./configure --with-mpir=deps --with-mpfr=deps && make -j4 && make -j4 check
 
