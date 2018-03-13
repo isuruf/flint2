@@ -23,6 +23,8 @@ install:
   - ./configure --with-mpir=mpir-2.7.2 --with-mpfr=mpfr-4.0.0
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then otool -L mpir-2.7.2/.libs/libgmp.16.dylib; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then otool -L mpfr-4.0.0/src/.libs/libmpfr.6.dylib; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then otool -D mpir-2.7.2/.libs/libgmp.16.dylib; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then otool -D mpfr-4.0.0/src/.libs/libmpfr.6.dylib; fi
   - ${MAKE} QUIET_CC=
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then otool -L libflint.dylib; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ldd libflint.so; fi

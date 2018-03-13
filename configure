@@ -473,6 +473,7 @@ if [ -z "$FLINT_LIB" ]; then
       Darwin)
          FLINT_LIBNAME="libflint.dylib"
          FLINT_LIB="libflint-$FLINT_MAJOR.dylib"
+         EXTRA_SHARED_FLAGS="-install_name $PREFIX/lib/$FLINT_LIB"
          EXTRA_SHARED_FLAGS="$EXTRA_SHARED_FLAGS -compatibility_version $FLINT_MAJOR.$FLINT_MINOR"
          EXTRA_SHARED_FLAGS="$EXTRA_SHARED_FLAGS -current_version $FLINT_MAJOR.$FLINT_MINOR.$FLINT_PATCH"
          ;;
@@ -512,6 +513,26 @@ case "$OS" in
          fi
       fi;;
 esac
+
+case "$OS" in
+  Darwin)
+    if [ -f "$GMP_LIB_DIR/libgmp.dylib" ]; then
+      gmp_install_name=`$OTOOL -L $GMP_LIB_DIR/libgmp.dylib | awk '{if (NR == 2) {print $1;exit}}'`
+      EXTRA_EXE_LINKER_FLAGS="-Wl,-dylib_file -Wl,$gmp_install_name:$GMP_LIB_DIR/libgmp.dylib $EXTRA_EXE_LINKER_FLAGS"
+    fi
+    if [ -f "$MPFR_LIB_DIR/libgmp.dylib" ]; then
+      mpfr_install_name=`$OTOOL -L $MPFR_LIB_DIR/libgmp.dylib | awk '{if (NR == 2) {print $1;exit}}'`
+      EXTRA_EXE_LINKER_FLAGS="-Wl,-dylib_file -Wl,$mpfr_install_name:$MPFR_LIB_DIR/libmpfr.dylib $EXTRA_EXE_LINKER_FLAGS"
+    fi
+    if [ "$SHARED" = "1" ]; then
+      EXTRA_EXE_LINKER_FLAGS="-Wl,-dylib_file -Wl,$PREFIX/lib/libflint-$FLINT_MAJOR.dylib:$PWD/libflint.dylib $EXTRA_EXE_LINKER_FLAGS"
+    fi
+    ;;
+  *)
+    ;;
+esac
+
+EXTRA_EXE_LINKER_FLAGS="-Wl,-rpath,$PWD -Wl,-rpath,$GMP_LIB_DIR -Wl,-rpath,$MPFR_LIB_DIR $EXTRA_EXE_LINKER_FLAGS"
 
 #extension for executables
 
@@ -778,6 +799,7 @@ echo "CXXFLAGS=$CXXFLAGS" >> Makefile
 echo "ABI_FLAG=$ABI_FLAG" >> Makefile
 echo "PIC_FLAG=$PIC_FLAG" >> Makefile
 echo "EXTRA_SHARED_FLAGS=$EXTRA_SHARED_FLAGS" >> Makefile
+echo "EXTRA_EXE_LINKER_FLAGS=$EXTRA_EXE_LINKER_FLAGS" >> Makefile
 echo "" >> Makefile
 echo "EXTENSIONS=$EXTENSIONS" >> Makefile
 echo "EXTRA_BUILD_DIRS=$EXTRA_BUILD" >> Makefile
