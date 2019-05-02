@@ -81,7 +81,7 @@ main(void)
         fmpz_mpoly_ctx_t ctx;
         fmpz_mpoly_t f, g, h, k1, k2, t1, t2;
         slong len, len1, len2;
-        mp_bitcnt_t coeff_bits, exp_bits, exp_bits1, exp_bits2;
+        flint_mp_bitcnt_t coeff_bits, exp_bits, exp_bits1, exp_bits2;
 
         fmpz_mpoly_ctx_init_rand(ctx, state, 20);
 
@@ -147,7 +147,7 @@ main(void)
         fmpz_mpoly_ctx_t ctx;
         fmpz_mpoly_t f, g, h;
         slong len, len1, len2, nvars;
-        mp_bitcnt_t coeff_bits, exp_bound, exp_bound1, exp_bound2;
+        flint_mp_bitcnt_t coeff_bits, exp_bound, exp_bound1, exp_bound2;
 
         fmpz_mpoly_ctx_init_rand(ctx, state, 4);
         nvars = ctx->minfo->nvars;
@@ -208,7 +208,7 @@ main(void)
         fmpz_mpoly_ctx_t ctx;
         fmpz_mpoly_t f, g, h;
         slong len, len1, len2, nvars;
-        mp_bitcnt_t coeff_bits, exp_bound, exp_bound1, exp_bound2;
+        flint_mp_bitcnt_t coeff_bits, exp_bound, exp_bound1, exp_bound2;
 
         fmpz_mpoly_ctx_init_rand(ctx, state, 4);
         nvars = ctx->minfo->nvars;

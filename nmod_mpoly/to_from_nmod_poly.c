@@ -25,7 +25,7 @@ void _nmod_mpoly_to_nmod_poly_deflate(nmod_poly_t A, const nmod_mpoly_t B,
     mp_limb_t * coeff = B->coeffs;
     ulong * exp = B->exps;
     ulong var_shift, var_stride;
-    mp_bitcnt_t bits = B->bits;
+    flint_mp_bitcnt_t bits = B->bits;
 
     FLINT_ASSERT(len > 0);
     FLINT_ASSERT(bits <= FLINT_BITS);
@@ -69,7 +69,7 @@ void _nmod_mpoly_to_nmod_poly_deflate(nmod_poly_t A, const nmod_mpoly_t B,
     set A to B(x_var^Astride[var])*xbar^Ashift
     A must be packed into bits = Abits
 */
-void _nmod_mpoly_from_nmod_poly_inflate(nmod_mpoly_t A, mp_bitcnt_t Abits,
+void _nmod_mpoly_from_nmod_poly_inflate(nmod_mpoly_t A, flint_mp_bitcnt_t Abits,
                          const nmod_poly_t B, slong var, const ulong * Ashift,
                              const ulong * Astride, const nmod_mpoly_ctx_t ctx)
 {

@@ -184,7 +184,7 @@ slong _fmpz_mpoly_mul_heap_part(fmpz ** A_coeff, ulong ** A_exp, slong * A_alloc
          slong * start, slong * end, slong * hind, const fmpz_mpoly_stripe_t S)
 {
     const int flint_small = S->flint_small;
-    mp_bitcnt_t bits = S->bits;
+    flint_mp_bitcnt_t bits = S->bits;
     slong N = S->N;
     const ulong * cmpmask = S->cmpmask;
     slong i, j;
@@ -400,7 +400,7 @@ typedef struct
     const ulong * Cexp;
     slong Clen;
     slong N;
-    mp_bitcnt_t bits;
+    flint_mp_bitcnt_t bits;
     const ulong * cmpmask;
     int flint_small;
 }
@@ -624,7 +624,7 @@ static void _join_worker(void * varg)
 void _fmpz_mpoly_mul_heap_threaded(fmpz_mpoly_t A,
                  const fmpz * Bcoeff, const ulong * Bexp, slong Blen,
                  const fmpz * Ccoeff, const ulong * Cexp, slong Clen,
-                              mp_bitcnt_t bits, slong N, const ulong * cmpmask)
+                              flint_mp_bitcnt_t bits, slong N, const ulong * cmpmask)
 {
     slong i, j;
     slong BClen, hi;
@@ -804,7 +804,7 @@ void _fmpz_mpoly_mul_heap_threaded_maxfields(fmpz_mpoly_t A,
                                                     const fmpz_mpoly_ctx_t ctx)
 {
     slong N;
-    mp_bitcnt_t exp_bits;
+    flint_mp_bitcnt_t exp_bits;
     ulong * cmpmask;
     ulong * Bexp, * Cexp;
     int freeBexp, freeCexp;

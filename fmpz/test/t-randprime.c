@@ -15,7 +15,7 @@
 int main(void)
 {
     int i;
-    mp_bitcnt_t bits;
+    flint_mp_bitcnt_t bits;
     FLINT_TEST_INIT(state);
 
     flint_printf("randprime....");

@@ -14,7 +14,7 @@
 
 
 
-void fmpz_mpolyu_init(fmpz_mpolyu_t A, mp_bitcnt_t bits,
+void fmpz_mpolyu_init(fmpz_mpolyu_t A, flint_mp_bitcnt_t bits,
                                                     const fmpz_mpoly_ctx_t ctx)
 {
     A->coeffs = NULL;
@@ -287,7 +287,7 @@ void fmpz_mpoly_to_mpolyu_perm_deflate(fmpz_mpolyu_t A, const fmpz_mpoly_t B,
             l = perm[k]
             Aexp[l] += scale[l]*Bexp[k]
 */
-void fmpz_mpoly_from_mpolyu_perm_inflate(fmpz_mpoly_t A, mp_bitcnt_t Abits,
+void fmpz_mpoly_from_mpolyu_perm_inflate(fmpz_mpoly_t A, flint_mp_bitcnt_t Abits,
                                                         const fmpz_mpolyu_t B,
                 const slong * perm, const ulong * shift, const ulong * stride,
                        const fmpz_mpoly_ctx_t uctx, const fmpz_mpoly_ctx_t ctx)
@@ -449,7 +449,7 @@ void fmpz_mpoly_to_mpolyuu_perm_deflate(
 */
 void fmpz_mpoly_from_mpolyuu_perm_inflate( /* only for 2 main vars */
     fmpz_mpoly_t A,
-    mp_bitcnt_t Abits,
+    flint_mp_bitcnt_t Abits,
     const fmpz_mpoly_ctx_t ctx,
     const fmpz_mpolyu_t B,
     const slong * perm,
@@ -614,7 +614,7 @@ void fmpz_mpoly_from_mpolyu_perm(fmpz_mpoly_t A,
     fmpz * texps;
     fmpz * uexps;
     fmpz * exps;
-    mp_bitcnt_t bits;
+    flint_mp_bitcnt_t bits;
     TMP_INIT;
 
     FLINT_ASSERT(B->bits <= FLINT_BITS);
@@ -791,7 +791,7 @@ void fmpz_mpolyu_set_nmod_mpolyu(fmpz_mpolyu_t A, const fmpz_mpoly_ctx_t ctx,
     Update H so that it does not change mod m, and is now A mod p
     It is asserted that the monomials in H and A match
 */
-int fmpz_mpoly_CRT_nmod_mpoly(mp_bitcnt_t * coeffbits,
+int fmpz_mpoly_CRT_nmod_mpoly(flint_mp_bitcnt_t * coeffbits,
                                    fmpz_mpoly_t H, const fmpz_mpoly_ctx_t ctx,
                          fmpz_t m, nmod_mpoly_t A, const nmod_mpoly_ctx_t ctxp)
 {
@@ -824,7 +824,7 @@ int fmpz_mpoly_CRT_nmod_mpoly(mp_bitcnt_t * coeffbits,
     Update H so that it does not change mod m, and is now A mod p
     It is asserted that the monomials in H and A match
 */
-int fmpz_mpolyu_CRT_nmod_mpolyu(mp_bitcnt_t * coeffbits,
+int fmpz_mpolyu_CRT_nmod_mpolyu(flint_mp_bitcnt_t * coeffbits,
                         fmpz_mpolyu_t H, const fmpz_mpoly_ctx_t ctx,
                         fmpz_t m, nmod_mpolyu_t A, const nmod_mpoly_ctx_t ctxp)
 {
@@ -894,7 +894,7 @@ void fmpz_mpolyu_divexact_mpoly(fmpz_mpolyu_t A, fmpz_mpolyu_t B,
     slong i;
     slong len;
     slong N;
-    mp_bitcnt_t exp_bits;
+    flint_mp_bitcnt_t exp_bits;
     ulong * cmpmask;
     TMP_INIT;
 
@@ -946,7 +946,7 @@ void fmpz_mpolyu_mul_mpoly(fmpz_mpolyu_t A, fmpz_mpolyu_t B,
     slong i;
     slong len;
     slong N;
-    mp_bitcnt_t exp_bits;
+    flint_mp_bitcnt_t exp_bits;
     ulong * cmpmask;
     TMP_INIT;
 
@@ -1017,7 +1017,7 @@ int fmpz_mpolyu_content(
 {
     slong i, j;
     int success;
-    mp_bitcnt_t bits = A->bits;
+    flint_mp_bitcnt_t bits = A->bits;
 
     FLINT_ASSERT(g->bits == bits);
 

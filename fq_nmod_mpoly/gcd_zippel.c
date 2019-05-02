@@ -524,7 +524,7 @@ void fq_nmod_mpoly_to_fq_nmod_poly_keepbits(fq_nmod_poly_t A, slong * Ashift,
     slong _Ashift = 0, len = B->length;
     fq_nmod_struct * Bcoeff = B->coeffs;
     ulong * exp = B->exps;
-    mp_bitcnt_t bits = B->bits;
+    flint_mp_bitcnt_t bits = B->bits;
 
     FLINT_ASSERT(bits <= FLINT_BITS);
 
@@ -548,7 +548,7 @@ void fq_nmod_mpoly_to_fq_nmod_poly_keepbits(fq_nmod_poly_t A, slong * Ashift,
 }
 
 void fq_nmod_mpoly_from_fq_nmod_poly_keepbits(fq_nmod_mpoly_t A,
-         const fq_nmod_poly_t B, slong Bshift, slong var, mp_bitcnt_t bits,
+         const fq_nmod_poly_t B, slong Bshift, slong var, flint_mp_bitcnt_t bits,
                                                  const fq_nmod_mpoly_ctx_t ctx)
 {
     slong N;
@@ -607,7 +607,7 @@ int _fq_nmod_mpoly_gcd_zippel(fq_nmod_mpoly_t G, const fq_nmod_mpoly_t A,
     mpoly_zipinfo_t zinfo;
     fq_nmod_mpoly_ctx_t uctx;
     fq_nmod_mpolyu_t Au, Bu, Gu;
-    mp_bitcnt_t new_bits;
+    flint_mp_bitcnt_t new_bits;
 
     FLINT_ASSERT(A->bits <= FLINT_BITS);
     FLINT_ASSERT(B->bits <= FLINT_BITS);

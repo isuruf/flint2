@@ -13,7 +13,7 @@
 #include "fq_nmod_mpoly.h"
 
 
-void nmod_mpolyun_init(nmod_mpolyun_t A, mp_bitcnt_t bits,
+void nmod_mpolyun_init(nmod_mpolyun_t A, flint_mp_bitcnt_t bits,
                                                     const nmod_mpoly_ctx_t ctx)
 {
     A->coeffs = NULL;
@@ -845,7 +845,7 @@ nmod_mpolyn_addinterp(slong * lastdeg,
     slong i, j, k;
     slong N;
     mp_limb_t v;
-    mp_bitcnt_t bits = A->bits;
+    flint_mp_bitcnt_t bits = A->bits;
     slong Flen = F->length, Alen = A->length;
     ulong * Fexp = F->exps, * Aexp = A->exps;
     ulong * Texp;
@@ -1059,7 +1059,7 @@ nmod_mpolyn_addinterp_fq_nmod_mpoly(slong * lastdeg,
     slong N;
     fq_nmod_t u, v;
     nmod_poly_t w;
-    mp_bitcnt_t bits = A->bits;
+    flint_mp_bitcnt_t bits = A->bits;
     slong Flen = F->length, Alen = A->length;
     ulong * Fexp = F->exps, * Aexp = A->exps;
     ulong * Texp;

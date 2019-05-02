@@ -21,7 +21,7 @@ void nmod_mpoly_ctx_change_modulus(nmod_mpoly_ctx_t ctx, mp_limb_t modulus)
 
 /*
     Find a bound on the bits of the coefficients of gcd(A,B).
-    If this overflows a mp_bitcnt_t, the max mp_bitcnt_t is returned.
+    If this overflows a flint_mp_bitcnt_t, the max flint_mp_bitcnt_t is returned.
     We will apply a Kronecker substitution and use the Landau-Mignotte bound
         for univariates.
 
@@ -33,14 +33,14 @@ void nmod_mpoly_ctx_change_modulus(nmod_mpoly_ctx_t ctx, mp_limb_t modulus)
     This number is almost certainly not going to be used,
         so it just needs to be correct and not nececessary as tight as possible.
 */
-mp_bitcnt_t fmpz_mpolyu_gcd_bitbound(const fmpz_t gcdlc,
+flint_mp_bitcnt_t fmpz_mpolyu_gcd_bitbound(const fmpz_t gcdlc,
                             const fmpz_mpolyu_t A, const fmpz_mpolyu_t B,
                        const fmpz_mpoly_ctx_t ctx, const mpoly_zipinfo_t zinfo)
 {
     slong i;
     fmpz_t n, an, bn;
     ulong max, len;
-    mp_bitcnt_t r;
+    flint_mp_bitcnt_t r;
 
     /* find the degree of the kronecker substitution in the lesser variables */
     fmpz_init_set_ui(n, UWORD(1));
@@ -104,8 +104,8 @@ int fmpz_mpolyu_gcdm_zippel(fmpz_mpolyu_t G, fmpz_mpolyu_t A, fmpz_mpolyu_t B,
                             const fmpz_mpoly_ctx_t ctx, mpoly_zipinfo_t zinfo,
                                                         flint_rand_t randstate)
 {
-    mp_bitcnt_t coeffbitbound;
-    mp_bitcnt_t coeffbits;
+    flint_mp_bitcnt_t coeffbitbound;
+    flint_mp_bitcnt_t coeffbits;
     slong degbound;
     int success, changed;
     mp_limb_t p = UWORD(1) << (FLINT_BITS - 1), old_p, t, gammap;
@@ -356,7 +356,7 @@ void fmpz_mpoly_to_fmpz_poly_keepbits(fmpz_poly_t A, slong * Ashift,
     slong _Ashift = 0, len = B->length;
     fmpz * coeff = B->coeffs;
     ulong * exp = B->exps;
-    mp_bitcnt_t bits = B->bits;
+    flint_mp_bitcnt_t bits = B->bits;
 
     FLINT_ASSERT(bits <= FLINT_BITS);
 
@@ -380,7 +380,7 @@ void fmpz_mpoly_to_fmpz_poly_keepbits(fmpz_poly_t A, slong * Ashift,
 }
 
 void fmpz_mpoly_from_fmpz_poly_keepbits(fmpz_mpoly_t A, const fmpz_poly_t B,
-                           slong Bshift, slong var, mp_bitcnt_t bits, const fmpz_mpoly_ctx_t ctx)
+                           slong Bshift, slong var, flint_mp_bitcnt_t bits, const fmpz_mpoly_ctx_t ctx)
 {
     slong N;
     slong k;
@@ -435,7 +435,7 @@ int _fmpz_mpoly_gcd_zippel(fmpz_mpoly_t G, fmpz_mpoly_t A,
     slong i;
     flint_rand_t randstate;
     int ret, success = 0;
-    mp_bitcnt_t new_bits;
+    flint_mp_bitcnt_t new_bits;
     mpoly_zipinfo_t zinfo;
     fmpz_mpoly_ctx_t uctx;
     fmpz_mpolyu_t Au, Bu, Gu;
@@ -521,7 +521,7 @@ int fmpz_mpoly_gcd_zippel(fmpz_mpoly_t G,
         const fmpz_mpoly_t A, const fmpz_mpoly_t B, const fmpz_mpoly_ctx_t ctx)
 {
     slong i;
-    mp_bitcnt_t new_bits;
+    flint_mp_bitcnt_t new_bits;
     flint_rand_t randstate;
     int ret, success = 0;
     mpoly_zipinfo_t zinfo;

@@ -28,7 +28,7 @@ NTL_CLIENT
 int test_ZZ_to_fmpz()
 {
     int i, result;
-    mp_bitcnt_t bits, randbits;
+    flint_mp_bitcnt_t bits, randbits;
     fmpz_t int1, int2;
    
     ZZ z;
@@ -75,7 +75,7 @@ int test_ZZX_to_fmpz_poly()
 {
     fmpz_poly_t f_poly1, f_poly2;
     slong length;
-    mp_bitcnt_t bits;
+    flint_mp_bitcnt_t bits;
     int i, result;
    
     FLINT_TEST_INIT(state);

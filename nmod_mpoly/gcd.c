@@ -15,7 +15,7 @@
     Assume when B is converted to univar format, its length would be one.
     Gcd is gcd of coefficients of univar(A) and B (modulo some shifts).
 */
-static int _try_missing_var(nmod_mpoly_t G, mp_bitcnt_t Gbits, slong var,
+static int _try_missing_var(nmod_mpoly_t G, flint_mp_bitcnt_t Gbits, slong var,
                                          const nmod_mpoly_t A, ulong Ashift,
                                          const nmod_mpoly_t B, ulong Bshift,
                                                     const nmod_mpoly_ctx_t ctx)
@@ -60,7 +60,7 @@ cleanup:
 /*
     return 1 for success or 0 for failure
 */
-static int _try_zippel(nmod_mpoly_t G, mp_bitcnt_t Gbits, ulong * Gstride,
+static int _try_zippel(nmod_mpoly_t G, flint_mp_bitcnt_t Gbits, ulong * Gstride,
          const nmod_mpoly_t A, const ulong * Amax_exp, const ulong * Amin_exp,
                    const slong * Amax_exp_count, const slong * Amin_exp_count,
          const nmod_mpoly_t B, const ulong * Bmax_exp, const ulong * Bmin_exp,
@@ -72,7 +72,7 @@ static int _try_zippel(nmod_mpoly_t G, mp_bitcnt_t Gbits, ulong * Gstride,
     int success;
     ulong * Gshift, * Addeg, * Bddeg;
     mpoly_zipinfo_t zinfo;
-    mp_bitcnt_t new_bits;
+    flint_mp_bitcnt_t new_bits;
     flint_rand_t randstate;
     nmod_mpoly_ctx_t uctx;
     nmod_mpolyu_t Au, Bu, Gu;
@@ -346,7 +346,7 @@ cleanup:
 /*
     return 1 for success or 0 for failure
 */
-static int _try_brown(nmod_mpoly_t G, mp_bitcnt_t Gbits, ulong * Gstride,
+static int _try_brown(nmod_mpoly_t G, flint_mp_bitcnt_t Gbits, ulong * Gstride,
          const nmod_mpoly_t A, const ulong * Amax_exp, const ulong * Amin_exp,
          const nmod_mpoly_t B, const ulong * Bmax_exp, const ulong * Bmin_exp,
                                                     const nmod_mpoly_ctx_t ctx)
@@ -500,7 +500,7 @@ cleanup:
 
     return is 1 for success, 0 for failure.
 */
-int _nmod_mpoly_gcd(nmod_mpoly_t G, mp_bitcnt_t Gbits,
+int _nmod_mpoly_gcd(nmod_mpoly_t G, flint_mp_bitcnt_t Gbits,
                                const nmod_mpoly_t A, const nmod_mpoly_t B,
                                                     const nmod_mpoly_ctx_t ctx)
 {
@@ -703,7 +703,7 @@ cleanup:
 int nmod_mpoly_gcd(nmod_mpoly_t G, const nmod_mpoly_t A, const nmod_mpoly_t B,
                                                     const nmod_mpoly_ctx_t ctx)
 {
-    mp_bitcnt_t Gbits;
+    flint_mp_bitcnt_t Gbits;
 
     if (nmod_mpoly_is_zero(A, ctx))
     {

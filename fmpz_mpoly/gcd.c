@@ -17,7 +17,7 @@
     Assume when B is converted to univar format, its length would be one.
     Gcd is gcd of coefficients of univar(A) and B (modulo some shifts).
 */
-static int _try_missing_var(fmpz_mpoly_t G, mp_bitcnt_t Gbits, slong var,
+static int _try_missing_var(fmpz_mpoly_t G, flint_mp_bitcnt_t Gbits, slong var,
                                          const fmpz_mpoly_t A, ulong Ashift,
                                          const fmpz_mpoly_t B, ulong Bshift,
                                                     const fmpz_mpoly_ctx_t ctx)
@@ -62,7 +62,7 @@ cleanup:
 /*
     return 1 for success or 0 for failure
 */
-static int _try_zippel(fmpz_mpoly_t G, mp_bitcnt_t Gbits, ulong * Gstride,
+static int _try_zippel(fmpz_mpoly_t G, flint_mp_bitcnt_t Gbits, ulong * Gstride,
          const fmpz_mpoly_t A, const ulong * Amax_exp, const ulong * Amin_exp,
                    const slong * Amax_exp_count, const slong * Amin_exp_count,
          const fmpz_mpoly_t B, const ulong * Bmax_exp, const ulong * Bmin_exp,
@@ -74,7 +74,7 @@ static int _try_zippel(fmpz_mpoly_t G, mp_bitcnt_t Gbits, ulong * Gstride,
     int success;
     ulong * Gshift, * Addeg, * Bddeg;
     mpoly_zipinfo_t zinfo;
-    mp_bitcnt_t new_bits;
+    flint_mp_bitcnt_t new_bits;
     flint_rand_t randstate;
     fmpz_mpoly_ctx_t uctx;
     fmpz_mpolyu_t Au, Bu, Gu;
@@ -348,7 +348,7 @@ cleanup:
 /*
     return 1 for success or 0 for failure
 */
-static int _try_brown(fmpz_mpoly_t G, mp_bitcnt_t Gbits, ulong * Gstride,
+static int _try_brown(fmpz_mpoly_t G, flint_mp_bitcnt_t Gbits, ulong * Gstride,
          const fmpz_mpoly_t A, const ulong * Amax_exp, const ulong * Amin_exp,
          const fmpz_mpoly_t B, const ulong * Bmax_exp, const ulong * Bmin_exp,
                                                     const fmpz_mpoly_ctx_t ctx)
@@ -491,7 +491,7 @@ cleanup:
 /*
     return 1 for success or 0 for failure
 */
-static int _try_prs(fmpz_mpoly_t G, mp_bitcnt_t Gbits,
+static int _try_prs(fmpz_mpoly_t G, flint_mp_bitcnt_t Gbits,
          const fmpz_mpoly_t A, const ulong * Amax_exp, const ulong * Amin_exp,
                    const slong * Amax_exp_count, const slong * Amin_exp_count,
          const fmpz_mpoly_t B, const ulong * Bmax_exp, const ulong * Bmin_exp,
@@ -734,7 +734,7 @@ cleanup:
 
     return is 1 for success, 0 for failure.
 */
-int _fmpz_mpoly_gcd(fmpz_mpoly_t G, mp_bitcnt_t Gbits,
+int _fmpz_mpoly_gcd(fmpz_mpoly_t G, flint_mp_bitcnt_t Gbits,
                                const fmpz_mpoly_t A, const fmpz_mpoly_t B,
                                                     const fmpz_mpoly_ctx_t ctx)
 {
@@ -960,7 +960,7 @@ cleanup:
 int fmpz_mpoly_gcd(fmpz_mpoly_t G, const fmpz_mpoly_t A, const fmpz_mpoly_t B,
                                                     const fmpz_mpoly_ctx_t ctx)
 {
-    mp_bitcnt_t Gbits;
+    flint_mp_bitcnt_t Gbits;
 
     if (fmpz_mpoly_is_zero(A, ctx))
     {

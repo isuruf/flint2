@@ -25,7 +25,7 @@ void _fq_nmod_mpoly_to_fq_nmod_poly_deflate(fq_nmod_poly_t A,
     fq_nmod_struct * coeff = B->coeffs;
     ulong * exp = B->exps;
     ulong var_shift, var_stride;
-    mp_bitcnt_t bits = B->bits;
+    flint_mp_bitcnt_t bits = B->bits;
 
     FLINT_ASSERT(len > 0);
     FLINT_ASSERT(bits <= FLINT_BITS);
@@ -71,7 +71,7 @@ void _fq_nmod_mpoly_to_fq_nmod_poly_deflate(fq_nmod_poly_t A,
 */
 
 void _fq_nmod_mpoly_from_fq_nmod_poly_inflate(fq_nmod_mpoly_t A,
-    mp_bitcnt_t Abits, const fq_nmod_poly_t B, slong var, const ulong * Ashift,
+    flint_mp_bitcnt_t Abits, const fq_nmod_poly_t B, slong var, const ulong * Ashift,
                           const ulong * Astride, const fq_nmod_mpoly_ctx_t ctx)
 {
     slong N;

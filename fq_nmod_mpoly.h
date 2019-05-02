@@ -62,7 +62,7 @@ typedef struct
     ulong * exps;
     slong alloc;
     slong length;
-    mp_bitcnt_t bits;     /* number of bits per exponent */
+    flint_mp_bitcnt_t bits;     /* number of bits per exponent */
 } fq_nmod_mpoly_struct;
 typedef fq_nmod_mpoly_struct fq_nmod_mpoly_t[1];
 
@@ -141,7 +141,7 @@ FLINT_DLL void fq_nmod_mpoly_ctx_init(fq_nmod_mpoly_ctx_t ctx, slong nvars,
 
 FLINT_DLL void fq_nmod_mpoly_ctx_init_rand(fq_nmod_mpoly_ctx_t ctx,
                                        flint_rand_t state, slong max_nvars,
-                                          mp_bitcnt_t p_bits, slong deg_bound);
+                                          flint_mp_bitcnt_t p_bits, slong deg_bound);
 
 FLINT_DLL void fq_nmod_mpoly_ctx_clear(fq_nmod_mpoly_ctx_t ctx);
 
@@ -167,7 +167,7 @@ FLINT_DLL void fq_nmod_mpoly_init2(fq_nmod_mpoly_t A, slong alloc,
                                                 const fq_nmod_mpoly_ctx_t ctx);
 
 FLINT_DLL void fq_nmod_mpoly_init3(fq_nmod_mpoly_t A, slong alloc,
-                              mp_bitcnt_t bits, const fq_nmod_mpoly_ctx_t ctx);
+                              flint_mp_bitcnt_t bits, const fq_nmod_mpoly_ctx_t ctx);
 
 FLINT_DLL void fq_nmod_mpoly_realloc(fq_nmod_mpoly_t A,
                                    slong alloc, const fq_nmod_mpoly_ctx_t ctx);
@@ -481,10 +481,10 @@ FLINT_DLL void fq_nmod_mpoly_assert_canonical(const fq_nmod_mpoly_t A,
                                                 const fq_nmod_mpoly_ctx_t ctx);
 
 FLINT_DLL void _fq_nmod_mpoly_radix_sort1(fq_nmod_mpoly_t A, slong left,
-                 slong right, mp_bitcnt_t pos, ulong cmpmask, ulong totalmask);
+                 slong right, flint_mp_bitcnt_t pos, ulong cmpmask, ulong totalmask);
 
 FLINT_DLL void _fq_nmod_mpoly_radix_sort(fq_nmod_mpoly_t A, slong left,
-                       slong right, mp_bitcnt_t pos, slong N, ulong * cmpmask);
+                       slong right, flint_mp_bitcnt_t pos, slong N, ulong * cmpmask);
 
 FLINT_DLL void _fq_nmod_mpoly_push_exp_ffmpz(fq_nmod_mpoly_t A,
                               const fmpz * exp, const fq_nmod_mpoly_ctx_t ctx);
@@ -505,7 +505,7 @@ FLINT_DLL void fq_nmod_mpoly_randtest_bounds(fq_nmod_mpoly_t A, flint_rand_t sta
               slong length, ulong * exp_bounds, const fq_nmod_mpoly_ctx_t ctx);
 
 FLINT_DLL void fq_nmod_mpoly_randtest_bits(fq_nmod_mpoly_t A, flint_rand_t state,
-            slong length, mp_bitcnt_t exp_bits, const fq_nmod_mpoly_ctx_t ctx);
+            slong length, flint_mp_bitcnt_t exp_bits, const fq_nmod_mpoly_ctx_t ctx);
 
 
 /* Addition/Subtraction ******************************************************/
@@ -558,7 +558,7 @@ FLINT_DLL slong _fq_nmod_mpoly_mul_johnson(
                     fq_nmod_struct ** coeff1, ulong ** exp1, slong * alloc,
              const fq_nmod_struct * coeff2, const ulong * exp2, slong len2,
              const fq_nmod_struct * coeff3, const ulong * exp3, slong len3,
-  mp_bitcnt_t bits, slong N, const ulong * cmpmask, const fq_nmod_ctx_t fqctx);
+  flint_mp_bitcnt_t bits, slong N, const ulong * cmpmask, const fq_nmod_ctx_t fqctx);
 
 
 /* Powering ******************************************************************/
@@ -613,7 +613,7 @@ FLINT_DLL slong _fq_nmod_mpoly_divides_monagan_pearce(
                   fq_nmod_struct ** coeff1,      ulong ** exp1, slong * alloc,
              const fq_nmod_struct * coeff2, const ulong * exp2, slong len2,
              const fq_nmod_struct * coeff3, const ulong * exp3, slong len3,
-  mp_bitcnt_t bits, slong N, const ulong * cmpmask, const fq_nmod_ctx_t fqctx);
+  flint_mp_bitcnt_t bits, slong N, const ulong * cmpmask, const fq_nmod_ctx_t fqctx);
 
 
 /* GCD ***********************************************************************/
@@ -621,16 +621,16 @@ FLINT_DLL slong _fq_nmod_mpoly_divides_monagan_pearce(
 FLINT_DLL int fq_nmod_mpoly_gcd(fq_nmod_mpoly_t G, const fq_nmod_mpoly_t A,
                        const fq_nmod_mpoly_t B, const fq_nmod_mpoly_ctx_t ctx);
 
-FLINT_DLL int _fq_nmod_mpoly_gcd(fq_nmod_mpoly_t G, mp_bitcnt_t Gbits,
+FLINT_DLL int _fq_nmod_mpoly_gcd(fq_nmod_mpoly_t G, flint_mp_bitcnt_t Gbits,
                             const fq_nmod_mpoly_t A, const fq_nmod_mpoly_t B,
                                                 const fq_nmod_mpoly_ctx_t ctx);
 
-FLINT_DLL int _fq_nmod_mpoly_gcd_monomial(fq_nmod_mpoly_t G, mp_bitcnt_t Gbits,
+FLINT_DLL int _fq_nmod_mpoly_gcd_monomial(fq_nmod_mpoly_t G, flint_mp_bitcnt_t Gbits,
                              const fq_nmod_mpoly_t A, const fq_nmod_mpoly_t B,
                                                 const fq_nmod_mpoly_ctx_t ctx);
 
 FLINT_DLL int _fq_nmod_mpoly_gcd_monomial_cofactors_sp(
-                         fq_nmod_mpoly_t G, mp_bitcnt_t Gbits,
+                         fq_nmod_mpoly_t G, flint_mp_bitcnt_t Gbits,
       const fq_nmod_mpoly_t A, const ulong * Amax_exp , const ulong * Amin_exp,
       const fq_nmod_mpoly_t B, const ulong * Bmax_exp , const ulong * Bmin_exp,
                                                 const fq_nmod_mpoly_ctx_t ctx);
@@ -671,12 +671,12 @@ FLINT_DLL void _fq_nmod_mpoly_to_fq_nmod_poly_deflate(fq_nmod_poly_t A,
                          const ulong * Bstride, const fq_nmod_mpoly_ctx_t ctx);
 
 FLINT_DLL void _fq_nmod_mpoly_from_fq_nmod_poly_inflate(fq_nmod_mpoly_t A,
-    mp_bitcnt_t Abits, const fq_nmod_poly_t B, slong var, const ulong * Ashift,
+    flint_mp_bitcnt_t Abits, const fq_nmod_poly_t B, slong var, const ulong * Ashift,
                          const ulong * Astride, const fq_nmod_mpoly_ctx_t ctx);
 
 
 FLINT_DLL int fq_nmod_mpoly_repack_bits(fq_nmod_mpoly_t A, const fq_nmod_mpoly_t B,
-                             mp_bitcnt_t Abits, const fq_nmod_mpoly_ctx_t ctx);
+                             flint_mp_bitcnt_t Abits, const fq_nmod_mpoly_ctx_t ctx);
 
 
 FLINT_DLL void fq_nmod_mpoly_ctx_change_modulus(fq_nmod_mpoly_ctx_t ctx,
@@ -771,7 +771,7 @@ FLINT_DLL void fq_nmod_mpoly_to_fq_nmod_mpolyd_perm_deflate(fq_nmod_mpolyd_t A,
     const ulong * stride, const ulong * degree, const fq_nmod_mpoly_ctx_t ctx);
 
 FLINT_DLL void fq_nmod_mpoly_from_fq_nmod_mpolyd_perm_inflate(fq_nmod_mpoly_t A,
-    mp_bitcnt_t Abits, const fq_nmod_mpoly_ctx_t ctx, const fq_nmod_mpolyd_t B,
+    flint_mp_bitcnt_t Abits, const fq_nmod_mpoly_ctx_t ctx, const fq_nmod_mpolyd_t B,
                 const slong * perm, const ulong * shift, const ulong * stride);
 
 FLINT_DLL void fq_nmod_mpoly_convert_to_fq_nmod_mpolyd(
@@ -835,14 +835,14 @@ typedef struct
    ulong * exps;
    slong alloc;
    slong length;
-   mp_bitcnt_t bits;    /* default bits to construct coeffs */
+   flint_mp_bitcnt_t bits;    /* default bits to construct coeffs */
 } fq_nmod_mpolyu_struct;
 typedef fq_nmod_mpolyu_struct fq_nmod_mpolyu_t[1];
 
 FLINT_DLL int fq_nmod_mpolyu_is_canonical(const fq_nmod_mpolyu_t poly,
                                                 const fq_nmod_mpoly_ctx_t ctx);
 
-FLINT_DLL void fq_nmod_mpolyu_init(fq_nmod_mpolyu_t A, mp_bitcnt_t bits,
+FLINT_DLL void fq_nmod_mpolyu_init(fq_nmod_mpolyu_t A, flint_mp_bitcnt_t bits,
                                                 const fq_nmod_mpoly_ctx_t ctx);
 
 FLINT_DLL void fq_nmod_mpolyu_clear(fq_nmod_mpolyu_t A,
@@ -904,7 +904,7 @@ FLINT_DLL void fq_nmod_mpoly_to_mpolyu_perm_deflate(
                 const fq_nmod_mpoly_ctx_t uctx, const fq_nmod_mpoly_ctx_t ctx);
 
 FLINT_DLL void fq_nmod_mpoly_from_mpolyu_perm_inflate(
-            fq_nmod_mpoly_t A, mp_bitcnt_t Abits, const fq_nmod_mpolyu_t B,
+            fq_nmod_mpoly_t A, flint_mp_bitcnt_t Abits, const fq_nmod_mpolyu_t B,
                const slong * perm, const ulong * shift, const ulong * stride,
                 const fq_nmod_mpoly_ctx_t uctx, const fq_nmod_mpoly_ctx_t ctx);
 
@@ -951,7 +951,7 @@ typedef struct
 } fq_nmod_mpolyn_struct;
 typedef fq_nmod_mpolyn_struct fq_nmod_mpolyn_t[1];
 
-FLINT_DLL void fq_nmod_mpolyn_init(fq_nmod_mpolyn_t A, mp_bitcnt_t bits,
+FLINT_DLL void fq_nmod_mpolyn_init(fq_nmod_mpolyn_t A, flint_mp_bitcnt_t bits,
                                                 const fq_nmod_mpoly_ctx_t ctx);
 
 FLINT_DLL void fq_nmod_mpolyn_clear(fq_nmod_mpolyn_t A,
@@ -995,11 +995,11 @@ typedef struct
     ulong * exps;
     slong alloc;
     slong length;
-    mp_bitcnt_t bits;   /* default bits to construct coeffs */
+    flint_mp_bitcnt_t bits;   /* default bits to construct coeffs */
 } fq_nmod_mpolyun_struct;
 typedef fq_nmod_mpolyun_struct fq_nmod_mpolyun_t[1];
 
-FLINT_DLL void fq_nmod_mpolyun_init(fq_nmod_mpolyun_t A, mp_bitcnt_t bits,
+FLINT_DLL void fq_nmod_mpolyun_init(fq_nmod_mpolyun_t A, flint_mp_bitcnt_t bits,
                                                 const fq_nmod_mpoly_ctx_t ctx);
 
 FLINT_DLL void fq_nmod_mpolyun_clear(fq_nmod_mpolyun_t A,

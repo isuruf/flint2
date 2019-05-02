@@ -12,7 +12,7 @@
 #include "nmod_mpoly.h"
 #include "fq_nmod_mpoly.h"
 
-void fq_nmod_mpolyun_init(fq_nmod_mpolyun_t A, mp_bitcnt_t bits,
+void fq_nmod_mpolyun_init(fq_nmod_mpolyun_t A, flint_mp_bitcnt_t bits,
                                                  const fq_nmod_mpoly_ctx_t ctx)
 {
     A->coeffs = NULL;
@@ -633,7 +633,7 @@ fq_nmod_mpolyn_addinterp(slong * lastdeg,
     slong i, j, k;
     slong N;
     fq_nmod_t v;
-    mp_bitcnt_t bits = A->bits;
+    flint_mp_bitcnt_t bits = A->bits;
     slong Flen = F->length, Alen = A->length;
     ulong * Fexp = F->exps, * Aexp = A->exps;
     ulong * Texp;
@@ -903,7 +903,7 @@ int fq_nmod_mpolyn_addinterp_lgprime(slong * lastdeg,
     slong N;
     fq_nmod_t u, v;
     fq_nmod_poly_t u_sm, w;
-    mp_bitcnt_t bits = A->bits;
+    flint_mp_bitcnt_t bits = A->bits;
     slong Flen = F->length, Alen = A->length;
     ulong * Fexp = F->exps, * Aexp = A->exps;
     ulong * Texp;

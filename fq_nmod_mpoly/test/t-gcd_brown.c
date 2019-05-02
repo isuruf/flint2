@@ -27,7 +27,7 @@ main(void)
         slong len, len1, len2;
         slong degbound;
         int res;
-        mp_bitcnt_t pbits;
+        flint_mp_bitcnt_t pbits;
         slong deg;
 
         pbits = 1 + n_randint(state, FLINT_BITS);

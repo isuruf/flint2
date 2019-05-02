@@ -12,7 +12,7 @@
 #include "nmod_mpoly.h"
 
 
-void nmod_mpolyu_init(nmod_mpolyu_t A, mp_bitcnt_t bits,
+void nmod_mpolyu_init(nmod_mpolyu_t A, flint_mp_bitcnt_t bits,
                                                     const nmod_mpoly_ctx_t ctx)
 {
     A->coeffs = NULL;
@@ -226,7 +226,7 @@ void nmod_mpoly_to_mpolyu_perm_deflate(nmod_mpolyu_t A, const nmod_mpoly_t B,
             l = perm[k]
             Aexp[l] += scale[l]*Bexp[k]
 */
-void nmod_mpoly_from_mpolyu_perm_inflate(nmod_mpoly_t A, mp_bitcnt_t Abits,
+void nmod_mpoly_from_mpolyu_perm_inflate(nmod_mpoly_t A, flint_mp_bitcnt_t Abits,
                                                         const nmod_mpolyu_t B,
                 const slong * perm, const ulong * shift, const ulong * stride,
                        const nmod_mpoly_ctx_t uctx, const nmod_mpoly_ctx_t ctx)
@@ -728,7 +728,7 @@ void nmod_mpolyu_divexact_mpoly(nmod_mpolyu_t A, nmod_mpolyu_t B,
     slong i;
     slong len;
     slong N;
-    mp_bitcnt_t exp_bits;
+    flint_mp_bitcnt_t exp_bits;
     nmod_mpoly_struct * poly1, * poly2, * poly3;
     ulong * cmpmask;
     TMP_INIT;
@@ -778,7 +778,7 @@ void nmod_mpolyu_mul_mpoly(nmod_mpolyu_t A, nmod_mpolyu_t B,
     slong i;
     slong len;
     slong N;
-    mp_bitcnt_t exp_bits;
+    flint_mp_bitcnt_t exp_bits;
     nmod_mpoly_struct * poly1, * poly2, * poly3;
     ulong * cmpmask;
     TMP_INIT;

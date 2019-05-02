@@ -282,8 +282,8 @@ test_functions()
 
 
     frandxx rand;
-    mp_bitcnt_t bits = 123; // some extra space in two words
-    std::vector<mp_bitcnt_t> arr(bits / FLINT_BITS + 2);
+    flint_mp_bitcnt_t bits = 123; // some extra space in two words
+    std::vector<flint_mp_bitcnt_t> arr(bits / FLINT_BITS + 2);
     fmpzxx tostore = fmpzxx::randtest_unsigned(rand, bits);
     bit_pack(arr, bits, tostore);
     tassert(tostore == fmpzxx::bit_unpack_unsigned(arr, bits));

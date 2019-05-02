@@ -12,7 +12,7 @@
 #include "fq_nmod_mpoly.h"
 
 
-void fq_nmod_mpolyn_init(fq_nmod_mpolyn_t A, mp_bitcnt_t bits, const fq_nmod_mpoly_ctx_t ctx)
+void fq_nmod_mpolyn_init(fq_nmod_mpolyn_t A, flint_mp_bitcnt_t bits, const fq_nmod_mpoly_ctx_t ctx)
 {
     A->coeffs = NULL;
     A->exps = NULL;

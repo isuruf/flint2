@@ -236,12 +236,12 @@ int read(FILE*, Fmpz_target)
 
 size_t Fmpz_expr::sizeinbase(int) const
 size_t sizeinbase(Fmpz_expr, int)
-mp_bitcnt_t Fmpz_expr::bits() const
-mp_bitcnt_t bits(Fmpz_expr)
-mp_bitcnt_t Fmpz_expr::size() const
-mp_bitcnt_t size(Fmpz_expr)
-mp_bitcnt_t Fmpz_expr::val2() const
-mp_bitcnt_t val2(Fmpz_expr)
+flint_mp_bitcnt_t Fmpz_expr::bits() const
+flint_mp_bitcnt_t bits(Fmpz_expr)
+flint_mp_bitcnt_t Fmpz_expr::size() const
+flint_mp_bitcnt_t size(Fmpz_expr)
+flint_mp_bitcnt_t Fmpz_expr::val2() const
+flint_mp_bitcnt_t val2(Fmpz_expr)
 int Fmpz_expr::sign() const
 int sign(Fmpz_expr)
 
@@ -409,15 +409,15 @@ Fmpz_expr negmod(Fmpz_expr, Fmpz_expr)
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 static Fmpz_expr fmpzxx::bit_unpack(const vector<mp_limb_t>& v,
-            mp_bitcnt_t bits, mp_bitcnt_t shift = 0,
+            flint_mp_bitcnt_t bits, flint_mp_bitcnt_t shift = 0,
             int negate = 0, bool borrow = false)
 static Fmpz_expr fmpzxx::bit_unpack_unsigned(const vector<mp_limb_t>& v,
-            mp_bitcnt_t bits, mp_bitcnt_t shift = 0)
+            flint_mp_bitcnt_t bits, flint_mp_bitcnt_t shift = 0)
 
     Unpack an \code{fmpzxx} from \code{v}.
 
-bool bit_pack(std::vector<mp_limb_t>& v, mp_bitcnt_t bits, Fmpz_expr,
-            mp_bitcnt_t shift = 0, int negate = 0, bool borrow = false)
+bool bit_pack(std::vector<mp_limb_t>& v, flint_mp_bitcnt_t bits, Fmpz_expr,
+            flint_mp_bitcnt_t shift = 0, int negate = 0, bool borrow = false)
 
     Pack an \code{fmpzxx} to \code{v}. The vector \code{v} is required to be of
     sufficient size.
@@ -661,39 +661,39 @@ void Fmpz_mat_target::set_integral_fraction(Fmpq_mat_expr)
     Randomisation
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-void Fmpz_mat_target::set_randbits(frandxx& state, mp_bitcnt_t bits)
-void Fmpz_mat_target::set_randtest(frandxx& state, mp_bitcnt_t bits)
-void Fmpz_mat_target::set_randintrel(frandxx& state, mp_bitcnt_t bits)
-void Fmpz_mat_target::set_randsimdioph(frandxx& state, mp_bitcnt_t bits,
+void Fmpz_mat_target::set_randbits(frandxx& state, flint_mp_bitcnt_t bits)
+void Fmpz_mat_target::set_randtest(frandxx& state, flint_mp_bitcnt_t bits)
+void Fmpz_mat_target::set_randintrel(frandxx& state, flint_mp_bitcnt_t bits)
+void Fmpz_mat_target::set_randsimdioph(frandxx& state, flint_mp_bitcnt_t bits,
         mp_bitcount_t bits2)
-void Fmpz_mat_target::set_randtrulike(frandxx& state, mp_bitcnt_t bits,
+void Fmpz_mat_target::set_randtrulike(frandxx& state, flint_mp_bitcnt_t bits,
         ulong q)
-void Fmpz_mat_target::set_randtrulike2(frandxx& state, mp_bitcnt_t bits,
+void Fmpz_mat_target::set_randtrulike2(frandxx& state, flint_mp_bitcnt_t bits,
         ulong q)
-void Fmpz_mat_target::set_randajtai(frandxx& state, mp_bitcnt_t bits,
+void Fmpz_mat_target::set_randajtai(frandxx& state, flint_mp_bitcnt_t bits,
         double alpha)
 void Fmpz_mat_target::set_randrank(frandxx& state, slong rank,
-        mp_bitcnt_t bits)
+        flint_mp_bitcnt_t bits)
 void Fmpz_mat_target::set_randdet(frandxx& state, Fmpz_expr d)
 
     See \code{fmpz_mat_randbits} etc.
 
 static fmpz_matxx fmpz_matxx::randbits(slong r, slong c,
-        frandxx& state, mp_bitcnt_t bits)
+        frandxx& state, flint_mp_bitcnt_t bits)
 static fmpz_matxx fmpz_matxx::randtest(slong r, slong c,
-        frandxx& state, mp_bitcnt_t bits)
+        frandxx& state, flint_mp_bitcnt_t bits)
 static fmpz_matxx fmpz_matxx::randintrel(slong r, slong c,
-        frandxx& state, mp_bitcnt_t bits)
+        frandxx& state, flint_mp_bitcnt_t bits)
 static fmpz_matxx fmpz_matxx::randsimdioph(slong r, slong c,
-        frandxx& state, mp_bitcnt_t bits, mp_bitcount_t bits2)
+        frandxx& state, flint_mp_bitcnt_t bits, mp_bitcount_t bits2)
 static fmpz_matxx fmpz_matxx::randtrulike(slong r, slong c,
-        frandxx& state, mp_bitcnt_t bits, ulong q)
+        frandxx& state, flint_mp_bitcnt_t bits, ulong q)
 static fmpz_matxx fmpz_matxx::randtrulike2(slong r, slong c,
-        frandxx& state, mp_bitcnt_t bits, ulong q)
+        frandxx& state, flint_mp_bitcnt_t bits, ulong q)
 static fmpz_matxx fmpz_matxx::randajtai(slong r, slong c,
-        frandxx& state, mp_bitcnt_t bits, double alpha)
+        frandxx& state, flint_mp_bitcnt_t bits, double alpha)
 static fmpz_matxx fmpz_matxx::randrank(slong r, slong c,
-        frandxx& state, slong rank, mp_bitcnt_t bits)
+        frandxx& state, slong rank, flint_mp_bitcnt_t bits)
 static fmpz_matxx fmpz_matxx::randdet(slong r, slong c,
         frandxx& state, Fmpz_expr d)
 
@@ -997,11 +997,11 @@ void Fmpz_poly_target::truncate(slong)
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 static fmpz_polyxx fmpz_polyxx::randtest(
-        frandxx& state, slong len, mp_bitcnt_t bits)
+        frandxx& state, slong len, flint_mp_bitcnt_t bits)
 static fmpz_polyxx fmpz_polyxx::randtest_unsigned(
-        frandxx& state, slong len, mp_bitcnt_t bits)
+        frandxx& state, slong len, flint_mp_bitcnt_t bits)
 static fmpz_polyxx fmpz_polyxx::randtest_not_zero(
-        frandxx& state, slong len, mp_bitcnt_t bits)
+        frandxx& state, slong len, flint_mp_bitcnt_t bits)
 
     See \code{fmpz_poly_randtest} etc.
 
@@ -1077,10 +1077,10 @@ Fmpz_poly_expr smod(Fmpz_poly_expr, Fmpz_expr)
     Bit packing
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Fmpz_expr bit_pack(Fmpz_poly_expr, T:fits_into_mp_bitcnt_t)
-static Fmpz_poly_expr fmpz_polyxx::bit_unpack(Fmpz_expr, T:fits_into_mp_bitcnt_t)
+Fmpz_expr bit_pack(Fmpz_poly_expr, T:fits_into_flint_mp_bitcnt_t)
+static Fmpz_poly_expr fmpz_polyxx::bit_unpack(Fmpz_expr, T:fits_into_flint_mp_bitcnt_t)
 static Fmpz_poly_expr fmpz_polyxx::bit_unpack_unsigned(
-        Fmpz_expr, traits::fits_into_mp_bitcnt_t)
+        Fmpz_expr, traits::fits_into_flint_mp_bitcnt_t)
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     Multiplication
@@ -1527,10 +1527,10 @@ static fmpqxx fmpqxx::one()
 bool Fmpq_expr::is_zero() const
 bool Fmpq_expr::is_one() const
 int Fmpq_expr::sgn() const
-mp_bitcnt_t Fmpq_expr::height_bits() const
+flint_mp_bitcnt_t Fmpq_expr::height_bits() const
 Fmpz_expr Fmpq_expr::height() const
 
-mp_bitcnt_t height_bits(Fmpq_expr)
+flint_mp_bitcnt_t height_bits(Fmpq_expr)
 Fmpq_expr height(Fmpq_expr)
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -1716,13 +1716,13 @@ static fmpq_matxx fmpq_matxx::one(slong rows, slong cols)
     Random matrix generation
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-void Fmpq_mat_target::set_randtest(frandxx& state, slong len, mp_bitcnt_t)
+void Fmpq_mat_target::set_randtest(frandxx& state, slong len, flint_mp_bitcnt_t)
 static fmpq_matxx fmpq_matxx::randtest(slong rows, slong cols, frandxx& state,
-        slong len, mp_bitcnt_t)
+        slong len, flint_mp_bitcnt_t)
 void Fmpq_mat_target::set_randtest_unsigned(frandxx& state, slong len,
-        mp_bitcnt_t)
+        flint_mp_bitcnt_t)
 static fmpq_matxx fmpq_matxx::randtest_unsigned(slong rows, slong cols,
-        frandxx& state, slong len, mp_bitcnt_t)
+        frandxx& state, slong len, flint_mp_bitcnt_t)
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     Special matrices
@@ -1936,11 +1936,11 @@ fmzqxx_srcref Fmpq_poly_src::get_coeff_numref(slong n) const
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 static fmpq_polyxx fmpq_polyxx::randtest(
-        frandxx& state, slong len, mp_bitcnt_t bits)
+        frandxx& state, slong len, flint_mp_bitcnt_t bits)
 static fmpq_polyxx fmpq_polyxx::randtest_unsigned(
-        frandxx& state, slong len, mp_bitcnt_t bits)
+        frandxx& state, slong len, flint_mp_bitcnt_t bits)
 static fmpq_polyxx fmpq_polyxx::randtest_not_zero(
-        frandxx& state, slong len, mp_bitcnt_t bits)
+        frandxx& state, slong len, flint_mp_bitcnt_t bits)
 
     See \code{fmpq_poly_randtest} etc.
 
@@ -2185,9 +2185,9 @@ bool Fmpz_poly_q_src::is_canonical() const
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 static fmpz_poly_qxx fmpz_poly_qxx::randtest(frandxx& state,
-        slong len1, mp_bitcnt_t bits1, slong len2, mp_bitcnt_t bits2)
+        slong len1, flint_mp_bitcnt_t bits1, slong len2, flint_mp_bitcnt_t bits2)
 static fmpz_poly_qxx fmpz_poly_qxx::randtest_not_zero(frandxx& state,
-        slong len1, mp_bitcnt_t bits1, slong len2, mp_bitcnt_t bits2)
+        slong len1, flint_mp_bitcnt_t bits1, slong len2, flint_mp_bitcnt_t bits2)
 
     See \code{fmpz_poly_q_randtest} etc.
 
@@ -2329,17 +2329,17 @@ static fmpz_poly_matxx fmpz_poly_matxx::one(slong rows, slong cols)
     Random matrix generation
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-void Fmpz_poly_mat_target::set_randtest(frandxx& state, slong len, mp_bitcnt_t)
+void Fmpz_poly_mat_target::set_randtest(frandxx& state, slong len, flint_mp_bitcnt_t)
 void Fmpz_poly_mat_target::set_randtest_unsigned(frandxx& state, slong len,
-        mp_bitcnt_t)
+        flint_mp_bitcnt_t)
 void Fmpz_poly_mat_target::set_randtest_sparse(frandxx& state, slong len,
-        mp_bitcnt_t, float)
+        flint_mp_bitcnt_t, float)
 static fmpz_poly_matxx fmpz_poly_matxx::randtest(slong rows, slong cols,
-        frandxx&, slong len, mp_bitcnt_t)
+        frandxx&, slong len, flint_mp_bitcnt_t)
 static fmpz_poly_matxx fmpz_poly_matxx::randtest_unsigned(slong rows,
-        slong cols, frandxx&, slong len, mp_bitcnt_t)
+        slong cols, frandxx&, slong len, flint_mp_bitcnt_t)
 static fmpz_poly_matxx fmpz_poly_matxx::randtest_sparse(slong rows, slong cols,
-        frandxx&, slong len, mp_bitcnt_t, float density)
+        frandxx&, slong len, flint_mp_bitcnt_t, float density)
 
     See \code{fmpz_poly_mat_randtest} etc.
 
@@ -2787,9 +2787,9 @@ Nmod_poly_expr make_monic(Nmod_poly_expr)
     Bit packing and unpacking
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Fmpz_expr Nmod_poly_expr::bit_pack(T:fits_into_mp_bitcnt_t) const
+Fmpz_expr Nmod_poly_expr::bit_pack(T:fits_into_flint_mp_bitcnt_t) const
 static nmod_polyxx nmod_polyxx::bit_unpack(
-        Fmpz_expr, T:fits_into_mp_bitcnt_t) const
+        Fmpz_expr, T:fits_into_flint_mp_bitcnt_t) const
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     Multiplication
