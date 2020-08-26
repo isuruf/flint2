@@ -51,6 +51,7 @@ install:
   - echo int flint_test_multiplier(){return 1;} > test_helpers.c
   - cat test_helpers.c
 
+
 before_build:
   - ps: if (-Not (Test-Path .\build)) { mkdir build }
   
@@ -59,10 +60,14 @@ before_build:
   - if [%COMPILER%]==[cl] cmake -G "Ninja" -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=Release ..
 
 build_script:
-  - cmake --build . -- -j2
+  - echo 123
 
 test_script:
-  - ctest -j3 --output-on-failure --timeout 600
+  - echo 123
+
+artifacts:
+  - path: build
+    name: flint2_artifacts
 
 #on_finish:
 #  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
