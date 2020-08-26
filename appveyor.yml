@@ -45,24 +45,10 @@ install:
   - if [%COMPILER%]==[cl] call %CONDA_INSTALL_LOCN%\Scripts\activate.bat
   - if [%COMPILER%]==[cl] if [%ARCH%]==[64] call "%VCVARSALL%" x64
   - if [%COMPILER%]==[cl] if [%ARCH%]==[32] call "%VCVARSALL%" x86
-  - if [%COMPILER%]==[cl] conda config --add channels conda-forge --force
-  - if [%COMPILER%]==[cl] conda install --yes --quiet mpir=3.0.0 mpfr=4.* pthreads-win32 ninja
-  - if [%COMPILER%]==[cl] set "CFLAGS=/wd4146 /wd4018 /wd4267 /wd4244"
-  - echo int flint_test_multiplier(){return 1;} > test_helpers.c
-  - cat test_helpers.c
 
-before_build:
-  - ps: if (-Not (Test-Path .\build)) { mkdir build }
-  
-  - cd build
-  - if [%COMPILER%]==[gcc] cmake -G "MinGW Makefiles" -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=Release ..
-  - if [%COMPILER%]==[cl] cmake -G "Ninja" -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=Release ..
-
-build_script:
-  - cmake --build . -- -j2
-
-test_script:
-  - ctest -j3 --output-on-failure --timeout 600
+artifacts:
+  - path: C:\projects\flint2
+    name: flint2_artifacts
 
 #on_finish:
 #  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
