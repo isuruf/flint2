@@ -11,7 +11,7 @@
 */
 
 #if (defined(__WIN32) && !defined(__CYGWIN__) && !defined(__MINGW32__) && !defined(__MINGW64__)) || defined(_MSC_VER)
-# include <windows.h>
+# include <fileapi.h>
 #endif
 
 #include "fmpz.h"
