@@ -11,17 +11,6 @@
     (at your option) any later version.  See <https://www.gnu.org/licenses/>.
 */
 
-/* try to get fdopen, mkstemp declared */
-#if defined __STRICT_ANSI__
-#undef __STRICT_ANSI__
-#endif
-
-#include <stdlib.h>
-#include "thread_support.h"
-#include "fmpz.h"
-#include "fmpz_vec.h"
-#include "qsieve.h"
-
 #define _STDC_FORMAT_MACROS
 
 #if (defined(__WIN32) && !defined(__CYGWIN__) && !defined(__MINGW32__) && !defined(__MINGW64__)) || defined(_MSC_VER)
@@ -33,6 +22,17 @@
 #else
 # include <math.h>
 #endif
+
+/* try to get fdopen, mkstemp declared */
+#if defined __STRICT_ANSI__
+#undef __STRICT_ANSI__
+#endif
+
+#include <stdlib.h>
+#include "thread_support.h"
+#include "fmpz.h"
+#include "fmpz_vec.h"
+#include "qsieve.h"
 
 int compare_facs(const void * a, const void * b)
 {
