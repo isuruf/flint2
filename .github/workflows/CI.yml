@@ -445,13 +445,11 @@ jobs:
           cd build
           set "LIB=C:\Miniconda3\Library\lib;%LIB%"
           set "CPATH=C:\Miniconda3\Library\include;%CPATH%"
-          set "CFLAGS=/wd4018 /wd4146 /wd4244 /wd4267 /wd4305 /wd4996"
-          cmake -G "Ninja" -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=Release ..
+          cmake -G "Ninja" -DCMAKE_C_FLAGS="/wd4018 /wd4146 /wd4244 /wd4267 /wd4305 /wd4996" -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=Release ..
 
       - name: "Build"
         run: |
           cd build
-          set "CFLAGS=/wd4018 /wd4146 /wd4244 /wd4267 /wd4305 /wd4996"
           cmake --build . -- -j4
 
       - name: "Test"
