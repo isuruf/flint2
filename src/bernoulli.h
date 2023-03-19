@@ -20,7 +20,7 @@
 extern "C" {
 #endif
 
-FLINT_DLL extern slong FLINT_TLS_PREFIX bernoulli_cache_num;
+extern slong FLINT_TLS_PREFIX bernoulli_cache_num;
 
 extern FLINT_TLS_PREFIX fmpq * bernoulli_cache;
 
