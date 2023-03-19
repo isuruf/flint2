@@ -115,9 +115,9 @@ n_primes_next(n_primes_t iter)
 
 FLINT_DLL extern const unsigned int flint_primes_small[];
 
-FLINT_DLL extern FLINT_TLS_PREFIX ulong * _flint_primes[FLINT_BITS];
-FLINT_DLL extern FLINT_TLS_PREFIX double * _flint_prime_inverses[FLINT_BITS];
-FLINT_DLL extern FLINT_TLS_PREFIX int _flint_primes_used;
+extern FLINT_TLS_PREFIX ulong * _flint_primes[FLINT_BITS];
+extern FLINT_TLS_PREFIX double * _flint_prime_inverses[FLINT_BITS];
+extern FLINT_TLS_PREFIX int _flint_primes_used;
 
 void n_compute_primes(ulong num_primes);
 

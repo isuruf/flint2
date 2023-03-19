@@ -22,7 +22,7 @@ extern "C" {
 
 FLINT_DLL extern slong FLINT_TLS_PREFIX bernoulli_cache_num;
 
-FLINT_DLL extern FLINT_TLS_PREFIX fmpq * bernoulli_cache;
+extern FLINT_TLS_PREFIX fmpq * bernoulli_cache;
 
 void bernoulli_cache_compute(slong n);
 
