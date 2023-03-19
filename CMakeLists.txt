@@ -63,6 +63,10 @@ else()
     set(FLINT_USES_PTHREAD ON CACHE BOOL "Use POSIX Threads.")
 endif()
 
+if(MSVC AND BUILD_SHARED_LIBS)
+    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS yes)
+endif()
+
 # Find sources
 
 set(_BUILD_DIRS
