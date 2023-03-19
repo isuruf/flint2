@@ -63,19 +63,6 @@ else()
     set(FLINT_USES_PTHREAD ON CACHE BOOL "Use POSIX Threads.")
 endif()
 
-if(MSVC)
-    foreach(CompilerFlag CMAKE_C_FLAGS_DEBUG CMAKE_C_FLAGS_RELEASE)
-        if (BUILD_SHARED_LIBS)
-            set(${CompilerFlag} "${${CompilerFlag}} /DMSC_USE_DLL")
-        else ()
-            set(${CompilerFlag} "${${CompilerFlag}} /DPTW32_STATIC_LIB")
-        endif()
-    endforeach()
-
-    if(BUILD_SHARED_LIBS)
-        set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS yes)
-    endif()
-endif()
 
 # Find sources
 
@@ -285,7 +272,9 @@ if(FLINT_USES_BLAS)
 endif()
 
 if(BUILD_SHARED_LIBS AND WIN32)
-    # Export flint's functions
+    # Export all functions automatically (except global data)
+    set_target_properties(flint PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
+    # Export flint's global data that are marked manually
     target_compile_definitions(flint PRIVATE "FLINT_BUILD_DLL")
     # Use MPIR's dll import functions
     target_compile_definitions(flint PUBLIC "MSC_USE_DLL")
