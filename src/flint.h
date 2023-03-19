@@ -80,7 +80,7 @@
     #define __inline__  inline
 #endif
 
-extern char flint_version[];
+FLINT_DLL extern char flint_version[];
 
 #define ulong mp_limb_t
 #define slong mp_limb_signed_t
