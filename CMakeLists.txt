@@ -271,7 +271,7 @@ if(FLINT_USES_BLAS)
     target_include_directories(flint PUBLIC ${CBLAS_INCLUDE_DIRS})
 endif()
 
-if(BUILD_SHARED_LIBS AND WIN32)
+if(BUILD_SHARED_LIBS AND MSVC)
     # Export all functions automatically (except global data)
     set_target_properties(flint PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
     # Export flint's global data that are marked manually
